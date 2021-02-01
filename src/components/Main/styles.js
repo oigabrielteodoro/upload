@@ -140,12 +140,15 @@ export const ProgressBar = styled.div`
   border-radius: 4px;
   margin-top: 5px;
 
+  transition: all 0.2s;
+
   &::before { 
     content: '';
     position: absolute;
+    transition: all 0.2s;
     height: 4px;
     width: ${({ percentage }) => `${percentage}%`};
-    background: #468BF9;
+    background: ${({ percentage }) => `${percentage >= 100 ? '#3DDA30' : '#468BF9'}`};
     top: 0;
     bottom: 0;
     border-radius: 4px;
@@ -169,13 +172,14 @@ export const UploadCircleStatus = styled.div`
   display: grid;
   place-items: center;
 
-  ${({ success }) => success && css`
-    background: #3DDA30;
-    color: #fff;
-  `}
 
   ${({ authorized }) => authorized && css`
     background: #FEA12A;
+    color: #fff;
+  `}
+
+  ${({ success }) => success && css`
+    background: #3DDA30;
     color: #fff;
   `}
 
